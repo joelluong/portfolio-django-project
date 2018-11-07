@@ -2,13 +2,14 @@
 <!doctype html>
 <html lang="en">
 <head>
+    {% load staticfiles %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Album example for Bootstrap</title>
+    <title>{{blog.title}}</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -19,7 +20,7 @@
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Duong Luong</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Duong Luong</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,13 +28,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">LinkedIn</a>
+                    <a class="nav-link" href="https://www.linkedin.com/in/joel-luong-7b142a120/" target="_blank">LinkedIn</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Resume</a>
+                    <a class="nav-link" href="{% static 'resume.pdf' %}" target="_blank">Resume</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Blog</a>
+                    <a class="nav-link" href="{% url 'allblogs'%}">Blog</a>
                 </li>
             </ul>
         </div>
@@ -42,7 +43,13 @@
 
 <main role="main">
     <div class="container">
-        <h1>{{ blog.title }}</h1>
+        <h1 class="text-center pt-3">{{ blog.title }}</h1>
+        <p class="text-center">{{blog.pub_date}}</p>
+        <br>
+        <p class="text-center"><img class="img-fluid" src="{{blog.image.url}}" /></p>
+        <br>
+        <br>
+        <p>{{ blog.body }}</p>
     </div>
 </main>
 
